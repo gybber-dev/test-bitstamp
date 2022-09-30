@@ -1,0 +1,175 @@
+$header-height: 2.5rem;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header__left {
+    @apply flex h-full
+}
+
+.header__right {
+    @apply flex
+}
+
+.arrow-icon {
+    @apply h-3 w-3 cursor-pointer mx-1
+}
+
+@layer utilities {
+    .content__xs {
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 1fr;
+    }
+    .content__sm {
+        grid-template-columns: 1fr 250px;
+        grid-template-rows: minmax(300px,50%) 350px minmax(250px,33%);
+    }
+    .content__large {
+        grid-template-columns: 250px 1fr 1fr 250px;
+        grid-template-rows: auto 1fr minmax(300px,33%);
+    }
+    .content__md {
+        grid-template-rows: minmax(300px,50%) 1fr 250px;
+        grid-template-columns: auto 250px 250px;
+    }
+    .block-trades__large {
+        @apply col-start-1 col-end-2 row-start-1 row-end-3
+    }
+    .block-trades__md {
+        @apply col-start-1 col-end-2 row-start-1 row-end-3
+    }
+    .block-trades__sm {
+        @apply col-start-2 col-end-3 row-start-3 row-end-4
+    }
+    .block-graph1__large {
+        @apply col-start-2 col-end-5 row-start-1 row-end-3
+    }
+    .block-graph1__md {
+        @apply col-start-2 col-end-5 row-start-1 row-end-3
+    }
+    .block-graph1__sm {
+        @apply col-start-1 col-end-3 row-start-1 row-end-2
+    }
+    .block-graph1__xs {
+        @apply col-start-1 col-end-2;
+    }
+    .block-graph2__large {
+        @apply col-start-1 lg:col-end-3 md:col-end-2 row-start-3 row-end-4;
+    }
+    .block-graph2__sm {
+        @apply col-start-1 col-end-2 row-start-3 row-end-4;
+    }
+    .block-orders__large {
+        @apply lg:col-start-3 md:col-start-2 col-end-5 row-start-3 row-end-4
+    }
+    .block-orders__md {
+        @apply col-start-2 col-end-5 row-start-3 row-end-4
+    }
+    .block-orders__sm {
+        @apply col-start-1 col-end-2 row-start-2 row-end-3
+    }
+    .block-start__md {
+        @apply col-start-2 col-end-3 row-start-2 row-end-3
+    }
+}
+
+.block-graph1 {
+    @apply block-graph1__xs sm:block-graph1__sm md:block-graph1__md lg:block-graph1__large
+}
+
+.block-graph2 {
+    @apply hidden sm:block sm:block-graph2__sm md:block-graph2__sm lg:block-graph2__large;
+}
+
+.block-trades {
+    @apply hidden sm:block-trades__sm md:block-trades__md lg:block-trades__large
+}
+
+.block-orders {
+    @apply hidden sm:block-orders__sm md:block-orders__md lg:block-orders__large
+}
+
+.block-start {
+    @apply block sm:block-start__md md:hidden lg:hidden;
+    .buttonsWrapper {
+        @apply w-full flex my-4;
+        & > a {
+            height: 2.25rem;
+            flex-grow: 1;
+            margin: 0;
+        }
+        & > a:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+}
+
+.content {
+    height: calc(100vh - 2.5rem);
+    @apply content__xs sm:content__sm md:content__md lg:content__large;
+    & > div {
+        @apply border border-solid border-widget-border;
+    }
+}
+
+.table-header {
+    background-color: #1c1d20;
+    color: #9599a3;
+    @apply flex text-xxs py-1 text-right
+}
+
+.data-row {
+    @apply flex px-2 relative text-right text-xs hover:bg-row-shade;
+    margin-top: 0.0625rem;
+    & > span {
+        @apply flex-1
+    }
+}
+
+.table-body-wrapper {
+    overflow-y: auto;
+    height: 100%;
+}
+
+.cell {
+    @apply hidden bg-back-dark sm:grid;
+    height: 100%;
+    overflow: hidden;
+    grid-template-rows: auto 24px 1fr;
+}
+
+.cell-data {
+    overflow-y: auto;
+}
+
+.image-container {
+    position: relative;
+    img {
+        @apply absolute top-0 left-0 w-full h-full object-cover;
+    }
+}
+
+.link-button {
+    @apply flex justify-center items-center mx-2 px-4 rounded border border-smart-blue leading-6 text-xs cursor-pointer hover:opacity-80
+}
+
+.mobile-menu {
+    animation-duration: .5s;
+    animation-name: slideIn;
+    overflow: hidden;
+
+    height: calc(100vh - #{$header-height});
+    top: $header-height;
+    @apply absolute w-1/2 left-1/2 flex flex-col bg-back z-10;
+}
+
+@keyframes slideIn {
+    from {
+        margin-left: 100%;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
